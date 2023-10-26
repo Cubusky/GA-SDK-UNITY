@@ -173,7 +173,7 @@ namespace GameAnalyticsSDK
             }
         }
 
-        private static void InternalInitialize()
+        private static void InternalInitialize(RuntimePlatform platform)
         {
             if(!Application.isPlaying)
                 return; // no need to setup anything else if we are in the editor and not playing
@@ -188,7 +188,7 @@ namespace GameAnalyticsSDK
                 GA_Setup.SetVerboseLog(true);
             }
 
-            int platformIndex = GetPlatformIndex();
+            int platformIndex = GetPlatformIndex(platform);
 
             GA_Wrapper.SetUnitySdkVersion("unity " + GameAnalyticsSDK.Setup.Settings.VERSION);
             GA_Wrapper.SetUnityEngineVersion("unity " + GetUnityVersion());
@@ -247,14 +247,15 @@ namespace GameAnalyticsSDK
             }
         }
 
-        public static void Initialize ()
+        public static void Initialize() => Initialize(Application.platform);
+        public static void Initialize(RuntimePlatform key)
         {
-            InternalInitialize();
-            int platformIndex = GetPlatformIndex();
+            InternalInitialize(key);
+            int platformIndex = GetPlatformIndex(key);
 
-            if(platformIndex >= 0)
+            if (platformIndex >= 0)
             {
-                GA_Wrapper.Initialize (SettingsGA.GetGameKey (platformIndex), SettingsGA.GetSecretKey (platformIndex));
+                GA_Wrapper.Initialize(SettingsGA.GetGameKey(platformIndex), SettingsGA.GetSecretKey(platformIndex));
                 GameAnalytics._hasInitializeBeenCalled = true;
 
                 onInitialize?.Invoke(typeof(GameAnalytics), true);
@@ -1077,11 +1078,9 @@ namespace GameAnalyticsSDK
             return unityVersion;
         }
 
-        private static int GetPlatformIndex()
+        private static int GetPlatformIndex(RuntimePlatform platform)
         {
             int result = -1;
-
-            RuntimePlatform platform = Application.platform;
 
             if(platform == RuntimePlatform.IPhonePlayer)
             {
