@@ -8,7 +8,7 @@ namespace GameAnalyticsSDK
     {
         public List<RuntimePlatformRerouter> rerouters;
 
-        void Start()
+        private void Start()
         {
             if (Application.platform == RuntimePlatform.IPhonePlayer)
             {
@@ -50,23 +50,6 @@ namespace GameAnalyticsSDK
 
             GameAnalytics.Initialize(platform);
         }
-
-#if UNITY_EDITOR
-#if (UNITY_WSA)
-        [DllImport("GameAnalytics.UWP.dll")]
-        private static extern void onQuit();
-#endif
-
-        void OnApplicationQuit()
-        {
-#if (UNITY_WSA)
-            onQuit();
-#elif UNITY_STANDALONE
-            GameAnalyticsSDK.Net.GameAnalytics.OnQuit();
-            System.Threading.Thread.Sleep(1500);
-#endif
-        }
-#endif
     }
 
     [Serializable]
