@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 465288}
   - component: {fileID: 11465290}
   - component: {fileID: 11465288}
-  - component: {fileID: 3476572306731854015}
+  - component: {fileID: 2876679251628935661}
   m_Layer: 0
   m_Name: GameAnalytics
   m_TagString: Untagged
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1488bee7925fe433fbddf989c50ad4ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3476572306731854015
+--- !u!114 &2876679251628935661
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
