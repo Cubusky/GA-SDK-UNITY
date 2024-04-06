@@ -38,5 +38,11 @@
         "name": "GameAnalytics",
         "email": "sdk@gameanalytics.com",
         "url": "https://www.gameanalytics.com"
-    }
+    },
+    "samples": [
+        {
+            "displayName": "Game Analytics Initializer",
+            "path": "Samples~/Game Analytics Initializer"
+        }
+    ]
 }
