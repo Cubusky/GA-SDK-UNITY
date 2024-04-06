@@ -50,6 +50,11 @@ namespace GameAnalyticsSDK
 
             GameAnalytics.Initialize(platform);
         }
+
+        private void OnApplicationQuit()
+        {
+            GameAnalytics.NewDesignEvent("Total unscaled playtime", Time.unscaledTime);
+        }
     }
 
     [Serializable]
